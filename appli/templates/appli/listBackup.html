@@ -1,0 +1,39 @@
+{% extends 'appli/layout.html' %}
+ 
+{% load staticfiles %}
+ 
+{% block title %}
+    {{ projectname }}
+{% endblock %}
+ 
+{% block content %}
+ 
+    {% load customing %}
+
+<div class="table-responsive">
+        <table class="table table-striped table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Backup's Name</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for name,date in alldir %}
+                    <tr>
+                        <td><img style="margin-right:5px;" src="{% static '/appli/img/icon/zip.png' %}"><span class="uk-link-text" href="">{{ name }}</span></td>
+                        <td>{{date}}</td>
+                        <td class="uk-text-center">
+                            <a href="{% url 'appli:restoreBackupProject' projectname name %}" class="uk-margin-medium-right btn btn-info">Restore</a>
+                            <a href="{% url 'appli:deleteBackupProject' projectname name %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                   
+                            
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+ 
+{% endblock %}

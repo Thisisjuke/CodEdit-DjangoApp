@@ -1,0 +1,25 @@
+{% extends 'appli/layout.html' %}
+
+{% block title %}
+Add Project
+{% endblock %}
+
+{% block content %}
+{% load customing %}
+    {{ message }}
+    <form method="POST" class="group-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Project name :</label>
+            {{ form.name|addplaceholder:'Name' }}
+        </div>      
+        <div class="form-group">
+            <label>URL to git repository :
+            </label>
+            {{ form.link|addplaceholder:'Repository' }}
+            <p class="help-block">If you want fake project to try, there is a public bitbucket with data : <a target="_blank" rel="noopener noreferrer" href="https://bitbucket.org/jukeboy/fake-datas/">https://bitbucket.org/jukeboy/fake-datas/</a></p>
+        </div>                               
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+
+{% endblock %}

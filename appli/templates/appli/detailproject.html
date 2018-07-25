@@ -1,0 +1,46 @@
+{% extends 'appli/layout.html' %}
+
+{% load staticfiles %} 
+
+{% block title %}
+    {{ projectname }}
+    <form style="float:right;" action="{% url 'appli:deleteProject' projectname %}">
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+    <form  class="uk-margin-small-right" style="float:right;" action="{% url 'appli:backupProject' projectname %}">
+        <button type="submit" class="btn btn-info">
+            Do Backup
+        </button>
+    </form>
+    <form class="uk-margin-small-right" style="float:right;" action="{% url 'appli:showBackupsProject' projectname %}">
+        <button type="submit" class="btn btn-success">
+            Show Backups <span class="badge badge-light">{{nb_files}}</span>
+        </button>
+    </form> 
+{% endblock %}
+
+{% block content %}
+
+    {% load customing %}
+    <ul style="list-style-type: none;">
+    {% for level, name, url, type in alldir %}
+        {% if type == "file" %}
+            <li style="margin :5px;">{% autoescape off %}
+                    {% multiply level %}
+                {% endautoescape %}
+                <img src="{% static '/appli/img/icon/file.png' %}">
+                <a class="uk-link-text" href="{% url 'appli:modifyFile' projectname=projectname filename=url %}">{{ name }}</a></li>
+        {% endif %}
+        {% if type == "folder" %}
+        <li>
+            {% autoescape off %}
+                    {% multiply level %}
+                {% endautoescape %}
+                <img src="{% static '/appli/img/icon/folder.png' %}">
+                <span>{{ name }}</span>
+            </li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+
+{% endblock %}

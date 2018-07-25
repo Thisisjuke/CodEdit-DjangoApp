@@ -1,0 +1,27 @@
+{% extends 'appli/layout.html' %}
+
+{% block title %}
+Modify : {{projectname}} {{filename}} <br><btn id="btn-save" class="btn btn-primary">Save</btn>
+{% endblock %}
+
+{% block content %}
+
+<form id="form-editor" method="POST" class="group-form" action ="">
+
+    {% csrf_token %}
+    <textarea name="content" type="{{extension}}" class="CodeMirror" id="editor">
+    {{content}}
+    </textarea>
+
+</form>
+
+<script>
+    var form = document.getElementById("form-editor");
+
+document.getElementById("btn-save").addEventListener("click", function () {
+  form.submit();
+});
+</script>
+
+{% endblock %}
+

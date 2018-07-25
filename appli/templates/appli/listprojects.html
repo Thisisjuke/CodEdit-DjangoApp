@@ -1,0 +1,18 @@
+{% extends 'appli/layout.html' %}
+
+{% block title %}
+List Project
+{% endblock %}
+
+{% block content %}
+
+    {% if all_projects %}
+        <ul>
+        {% for project in all_projects %}
+            <li><a href="{% url 'appli:detailProject' project.name %}">{{ project.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <a href="{% url 'appli:addProject' %}" type="button" class="btn btn-primary">Create a project</a>
+
+{% endblock %}

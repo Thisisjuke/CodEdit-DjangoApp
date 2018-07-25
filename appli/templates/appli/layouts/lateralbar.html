@@ -1,0 +1,39 @@
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </li>
+            <li class="active">
+                <a href="{% url 'appli:index' %}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="{% url 'appli:addProject' %}"><i class="fa fa-cogs fa-fw"></i> Start Project</a>
+            </li>
+            <li>
+                <a style="cursor:pointer"><i class="fa fa-wrench fa-fw"></i> Last Projects<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    {% if last_proj %}
+                        {% for proj in last_proj %}
+                            <li><a href="{% url 'appli:detailProject' proj.name %}">{{ proj.name }}</a></li>
+                        {% endfor %}
+                    {% endif %}    
+                    <li style="background-color:#F0F4F9;">
+                        <a href="{% url 'appli:listProjects' %}"> All My Projects</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->
