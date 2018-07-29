@@ -57,7 +57,7 @@ def addProject(request):
                     proj.user = request.user
                     proj.name = extension
                     proj.save()
-                    return HttpResponseRedirect('appli/')
+                    return HttpResponseRedirect('/appli/')
                 else: 
                     context = {'message': 'Error : Try with a valid git repository'}
                     return render(request, 'appli/addproject.html', context)
