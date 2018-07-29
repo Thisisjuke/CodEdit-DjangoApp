@@ -1,0 +1,16 @@
+{% extends 'appli/layout.html' %}
+
+{% block title %}
+Add Project
+{% endblock %}
+
+{% block content %}
+
+    {{ message }}
+    <form method="POST" class="group-form">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Save</button>
+    </form>
+
+{% endblock %}

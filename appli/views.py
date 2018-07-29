@@ -27,7 +27,7 @@ GLOBAL_DIRSTOCKAGE = os.path.dirname(os.path.normpath(os.path.dirname(os.path.re
 
 def index(request):
     if request.user.is_authenticated:
-        nb_user = User.objects.count() - 2
+        nb_user = User.objects.count()
         nb_projects = Project.objects.count()
         nb_own = Project.objects.filter(user=request.user).count()
         truc = 0

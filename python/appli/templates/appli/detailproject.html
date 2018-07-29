@@ -1,0 +1,37 @@
+{% extends 'appli/layout.html' %}
+
+{% load staticfiles %} 
+
+{% block title %}
+    {{ projectname }}
+    <form style="float:right;" action="{% url 'appli:deleteProject' projectname %}">
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+{% endblock %}
+
+{% block content %}
+
+    {% load customing %}
+    {% for level, name, url, type in alldir %}
+    {% if type == "folder" %}
+    {% if level != 0 %}
+        </ul>
+    {% endif %}
+    <ul style="list-style-type: none;">
+            {% autoescape off %}
+                    {% multiply level %}
+                {% endautoescape %}
+                <img src="{% static '/appli/img/icon/folder.png' %}">
+                <span>{{ name }}</span>
+        {% endif %}
+        
+        {% if type == "file" %}
+            <li style="margin :5px;">{% autoescape off %}
+                    {% multiply level %}
+                {% endautoescape %}
+                <img src="{% static '/appli/img/icon/file.png' %}">
+                <a class="uk-link-text" href="{% url 'appli:modifyFile' projectname=projectname filename=url %}">{{ name }}</a></li>
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}

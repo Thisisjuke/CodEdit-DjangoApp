@@ -1,0 +1,24 @@
+{% extends 'appli/layout.html' %}
+
+{% load staticfiles %} 
+
+{% block title %}
+    {{ projectname }}
+    <form style="float:right;" action="{% url 'appli:deleteProject' projectname %}">
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+{% endblock %}
+
+{% block content %}
+
+    {% load customing %}
+    <ul style="list-style-type: none;">
+    {% for name in alldir %}
+        
+            <li style="margin :5px;">
+                <img src="{% static '/appli/img/icon/zip.png' %}">
+                <a class="uk-link-text" href="">{{ name }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
