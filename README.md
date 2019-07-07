@@ -20,6 +20,9 @@
 <br>NOTICE : On windows, add ```python``` before the command like ```python manage.py cmd```
 
 ```
+# Empty migrations
+manage.py makemigrations appli --empty
+
 # Prepare migrations
 manage.py makemigrations
 
